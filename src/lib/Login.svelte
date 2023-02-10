@@ -1,7 +1,10 @@
 <script lang="js">
-    import { currentUser, pb } from './pocketbase';
+  import Addreview from './Addreview.svelte';
+  import { currentUser, pb } from './pocketbase';
+  import AddReviewModal from "./AddReviewModal.svelte"
     let username;
     let password;
+    let showModal = false;
     async function login() {
       await pb.collection('users').authWithPassword(username, password);
     }
@@ -29,6 +32,14 @@
       Signed in as {$currentUser.username} 
       <button on:click={signOut}>Sign Out</button>
     </p>
+    <button on:click="{() => showModal = true}">
+      show modal
+    </button>
+    {#if showModal}
+	  <AddReviewModal on:close="{() => showModal = false}">
+    </AddReviewModal>
+    {/if}
+
   {:else}
     <form on:submit|preventDefault>
       <input
@@ -44,6 +55,7 @@
       />
       <button on:click={signUp}>Sign Up</button>
       <button on:click={login}>Login</button>
+  
       
 
     </form>
