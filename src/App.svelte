@@ -1,12 +1,14 @@
 <script>
   import Login from './lib/Login.svelte';
   import { currentUser } from './lib/pocketbase';
-  import Reviews from './lib/Reviews.svelte';
+  import Grid from './lib/grid.svelte';
+  import Navbar from './lib/Navbar.svelte';
+
 </script>
 
 <Login />
 {#if $currentUser}
-  <Reviews />
+  <Grid />
 {/if}
 
 

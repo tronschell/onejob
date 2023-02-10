@@ -4,6 +4,7 @@
     import { Modals, closeModal } from 'svelte-modals'
     import { onMount, onDestroy } from 'svelte';
     import { currentUser, pb } from './pocketbase';
+    import Grid from './grid.svelte';
     import Addreview from './Addreview.svelte';
     let reviews = [];
     let unsubscribe;
@@ -12,9 +13,15 @@
   
     onMount(async () => {
       // Get initial reviews
-      const resultList = await pb.collection('reviews').getList(1, 50, {sort: '-created'});
-      reviews = resultList.items;
-      console.log(reviews)
+      try{
+        const resultList = await pb.collection('reviews').getList(1, 50, {sort: '-created'});
+        reviews = resultList.items;
+        console.log(reviews)
+      }
+      catch(e){
+        console.log(e)
+      }
+      
   
       // Subscribe to realtime reviews
       unsubscribe = await pb
@@ -39,18 +46,15 @@
   
 
   </script>
-  <button on:click={Addreview}>Add review</button>
-    <Modals>
-        <div
-        slot="backdrop"
-        class="backdrop"
-        on:click={closeModal}
-        />
-    </Modals>
+  <Addreview/>
+
+  <Grid/>
+
   <div class="reviews">
     {#each reviews.slice(0, seemorenum) as review}
+      {#if review.created_by==$currentUser.id}
       <div class="card-container">
-        <Card style= "height:fit-content; width:60vw;flex-direction:row; gap:1rem;"class="review-card" variant="outlined" padded>
+        <Card style= "height:fit-content; width:35vw;flex-direction:row; gap:1rem; border-color:yellow;"class="review-card" variant="outlined" padded>
             <div class = "card-top">
                 <h2 class="msg-text">{review.company_name}</h2>
                 <h3 class="msg-text">{review.role_name}</h3>
@@ -65,6 +69,24 @@
             </div>
         </Card>
       </div>
+      {:else}
+      <div class="card-container">
+        <Card class="review-card" variant="outlined" padded>
+            <div class = "card-top">
+                <h2 class="msg-text">{review.company_name}</h2>
+                <h3 class="msg-text">{review.role_name}</h3>
+            </div>
+            <div class="card-bottom">
+                <p class="msg-text">{review.work_location}</p>
+                <p class="msg-text">${review.pay}</p>
+                <p class="msg-text">{review.pay_rate}</p>
+                <p class="msg-text">{review.wlb_rating}/5</p>
+                <p class="msg-text">{review.overall_rating}/5</p>
+                <p class="msg-text">{review.num_interviews} Interviews</p>
+            </div>
+        </Card>
+      </div>
+      {/if}
     {/each}
   </div>
 
@@ -89,12 +111,23 @@
     .card-container{
         flex-direction: column;
         padding:1rem;
+        
     }
 
     .review-card{
         flex-direction: inherit;
         display:flex;
+        height:fit-content; 
+      width:25vw;
+      flex-direction:column;
+      flex-wrap: wrap; 
+      gap:1rem;
     }
+
+    .review-card:hover{
+      border-color: aqua;
+    }
+
 
     .card-top{
         display: flex;

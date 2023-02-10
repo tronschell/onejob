@@ -11,7 +11,7 @@
   let overallratinglist = [1, 2, 3, 4, 5]
   let numinterviewslist = [1, 2, 3, 4, 5]
   let worklocationlist = ["In Person", "Remote", "Hybrid"]
-  let positiontypelist = ["Internship", "Co-op", "Full Time", "Contractor (temp)"]
+  let positiontypelist = ["Internship", "Co-op", "Full Time", "Contractor"]
   let reviews = [];
   let unsubscribe;
 
@@ -29,6 +29,7 @@
         overall_rating:overallrating,
         position_type:positiontype,
         num_interviews:numinterviews,
+        description:descr,
         created_by: $currentUser.id
       };
       const createdreview = await pb.collection('reviews').create(data);
