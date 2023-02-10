@@ -2,10 +2,12 @@
     import { onMount, onDestroy } from 'svelte';
     import { currentUser, pb } from './pocketbase';
     import Navbar from './Navbar.svelte';
+  import AddReviewModal from './AddReviewModal.svelte';
 
     let reviews = [];
     let unsubscribe;
     let seemorenum = 4
+    let showModal = false;
 
   
     onMount(async () => {
@@ -42,7 +44,13 @@
     });
   
 </script>
+
     <div class="reviews">
+        {#if showModal}
+	        <AddReviewModal on:close="{() => showModal = false}">
+            </AddReviewModal>
+        {/if}
+
         {#each reviews.slice(0, seemorenum) as review}
         {#if review.created_by==$currentUser.id}
             <div class="card">
@@ -73,7 +81,7 @@
                 </div>
                 <div class="card-tags">
                     <p>{review.work_location}</p>
-                    <p>{review.work_type}</p>
+                    <p>{review.position_type}</p>
                 </div>
                 <div class="card-bottom">
                     <div class="bottom-items">
@@ -87,7 +95,8 @@
                 </div>
             </div>
         {:else}
-            <div class="card-owned">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="card-owned" on:click={() => showModal=true}>
                 <div class="card-top">
                     <div class="logoname">
                         <div class="company-logo">

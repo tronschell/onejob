@@ -67,8 +67,15 @@
 		school_major:schoolmajor,
         created_by: $currentUser.id
       };
-      const createdreview = await pb.collection('reviews').create(data);
-    }
+
+	  try{
+		const createdreview = await pb.collection('reviews').create(data);
+	  }
+	  catch(e){
+		console.error(e)
+	  }
+	}
+      
 
 
 </script>
@@ -78,7 +85,7 @@
 <div class="modal-background" on:click={close}></div>
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<form on:submit={sendreview}>
+	<form on:submit|preventDefault={sendreview}>
 		<input type="text" placeholder="Company Name" bind:value={companyname}>
 		<input type="text" placeholder="Role Name" bind:value={rolename}>
 		<input type="text" placeholder="Pay" bind:value={pay}>
@@ -123,7 +130,7 @@
 			<option value=4>4</option>
 			<option value=4>5</option>
 		</select>
-		<input type="submit">
+		<button type="submit">Submit</button>
 	</form>
 	<hr>
 	<!-- svelte-ignore a11y-autofocus -->
