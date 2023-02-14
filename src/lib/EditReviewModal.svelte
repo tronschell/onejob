@@ -6,6 +6,39 @@
 
 	let modal;
 
+	onMount(async () => {
+      // Get initial reviews
+      try{
+        const resultList = await pb.collection('reviews').getList(1, 50, {sort: '-created'});
+        reviews = resultList.items;
+        console.log(reviews)
+      }
+      catch(e){
+        console.log(e)
+      }
+      
+  
+      // Subscribe to realtime reviews
+      unsubscribe = await pb
+        .collection('reviews')
+        .subscribe('*', async ({ action, record }) => {
+          if (action === 'create') {
+            // Fetch associated user
+            //const user = await pb.collection('users').getOne(record.user);
+            //record.expand = { user };
+            reviews = [...reviews, record];
+          }
+          if (action === 'delete') {
+            reviews = reviews.filter((m) => m.id !== record.id);
+          }
+        });
+    });
+  
+    // Unsubscribe from realtime reviews
+    onDestroy(() => {
+      unsubscribe?.();
+    });
+
 	const handle_keydown = e => {
 		if (e.key === 'Escape') {
 			close();
@@ -86,7 +119,7 @@
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
 	<form on:submit|preventDefault={sendreview}>
-		<input type="text" placeholder="Company Name" bind:value={companyname}>
+		<input type="text" placeholder={review.company_name} bind:value={companyname}>
 		<input type="text" placeholder="Role Name" bind:value={rolename}>
 		<input type="text" placeholder="Pay" bind:value={pay}>
 		<select name="Pay Frequency" bind:value={payrate}>
