@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx http-server ./dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --host",
     "host": "vite --host",
     "preview": "vite preview",
     "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
