@@ -32,7 +32,7 @@
       Signed in as {$currentUser.username} 
       <button on:click={signOut}>Sign Out</button>
     </p>
-    <button on:click="{() => showModal = true}">
+    <button class="add-review"on:click="{() => showModal = true}">
       show modal
     </button>
     {#if showModal}
@@ -41,7 +41,8 @@
     {/if}
 
   {:else}
-    <form on:submit|preventDefault>
+  <div >
+    <form class="logincontainer" on:submit|preventDefault>
       <input
         placeholder="Username"
         type="text"
@@ -54,9 +55,37 @@
         bind:value={password} 
       />
       <button on:click={signUp}>Sign Up</button>
-      <button on:click={login}>Login</button>
+      <button class="loginbtn"on:click={login}>Login</button>
   
       
 
     </form>
+  </div>
   {/if}
+
+<style>
+  .logincontainer{
+    display:flex;
+    flex-direction: column;
+    padding:2rem;
+    gap:1rem;
+    border-style: solid ;
+    border-color: rgb(70, 70, 70);
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  input{
+    padding:0.75rem;
+    width:16rem;
+  }
+  .loginbtn{
+    background-color: blueviolet;
+  }
+
+  .loginbtn:hover{
+    border-style: solid;
+    border-color: aliceblue;
+  }
+</style>

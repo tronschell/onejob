@@ -3,14 +3,23 @@
   import { currentUser, pb } from "./pocketbase";
   import { onMount, onDestroy } from "svelte";
   import { Collection, Record } from "pocketbase";
+
   const dispatch = createEventDispatcher();
   const close = () => dispatch("close");
-
-
   
-
   let modal;
+  export let sortsetting;
   export let review;
+  export let resultList;
+
+  async function GetNew(setting){
+    resultList = await pb
+	
+        .collection("reviews")
+        .getList(1, 50, { sort: setting})
+		
+      reviews = resultList.items
+}
 
   const handle_keydown = (e) => {
     if (e.key === "Escape" || e.key === "") {
@@ -91,6 +100,7 @@
       description: description,
       school_major: schoolmajor,
     });
+	GetNew(sortsetting)
 	console.log(data)
 	console.log("submitted")
 	close()
@@ -99,6 +109,17 @@
 		console.log(e)
 	}
     
+  }
+
+  async function deleteReview() {
+	try{
+		await pb.collection('reviews').delete(review.id);
+		console.log("DELETED RECORD")
+	}
+	catch(e){
+		console.log(E)
+
+	}
   }
 
   	
@@ -116,6 +137,7 @@
       type="text"
       bind:value={companyname}
     />
+	{sortsetting}
     <input type="text" bind:value={rolename} />
     <input type="text" bind:value={pay} />
     <select
@@ -182,6 +204,8 @@
       <option value="4">5</option>
     </select>
     <button autofocus on:click={updateReview} type="submit">Submit</button>
+    <button autofocus on:click={deleteReview} type="submit">DELETE</button>
+
   </form>
   <hr />
   <!-- svelte-ignore a11y-autofocus -->
@@ -196,7 +220,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
   }
 
   .modal {

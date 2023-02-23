@@ -73,10 +73,12 @@
 
     try {
       const createdreview = await pb.collection("reviews").create(data);
+	  console.log($currentUser.id)
 		close()
 		
     } catch (e) {
-      console.error(e);
+      console.log(e);
+	  console.log($currentUser.id)
     }
   }
 </script>
