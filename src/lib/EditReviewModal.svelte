@@ -8,18 +8,7 @@
   const close = () => dispatch("close");
   
   let modal;
-  export let sortsetting;
   export let review;
-  export let resultList;
-
-  async function GetNew(setting){
-    resultList = await pb
-	
-        .collection("reviews")
-        .getList(1, 50, { sort: setting})
-		
-      reviews = resultList.items
-}
 
   const handle_keydown = (e) => {
     if (e.key === "Escape" || e.key === "") {
@@ -100,7 +89,6 @@
       description: description,
       school_major: schoolmajor,
     });
-	GetNew(sortsetting)
 	console.log(data)
 	console.log("submitted")
 	close()
@@ -117,8 +105,7 @@
 		console.log("DELETED RECORD")
 	}
 	catch(e){
-		console.log(E)
-
+		console.log(e)
 	}
   }
 
@@ -137,7 +124,6 @@
       type="text"
       bind:value={companyname}
     />
-	{sortsetting}
     <input type="text" bind:value={rolename} />
     <input type="text" bind:value={pay} />
     <select
