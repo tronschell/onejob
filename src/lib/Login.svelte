@@ -2,6 +2,7 @@
   import Addreview from './Addreview.svelte';
   import { currentUser, pb } from './pocketbase';
   import AddReviewModal from "./AddReviewModal.svelte"
+  
     let username;
     let password;
     let showModal = false;
@@ -28,17 +29,18 @@
   </script>
   
   {#if $currentUser}
-    <p>
+    <p class="nav">
       Signed in as {$currentUser.username} 
       <button on:click={signOut}>Sign Out</button>
+      <button class="add-review"on:click="{() => showModal = true}">
+        Add Review
+      </button>
+      {#if showModal}
+      <AddReviewModal on:close="{() => showModal = false}">
+      </AddReviewModal>
+      {/if}
     </p>
-    <button class="add-review"on:click="{() => showModal = true}">
-      show modal
-    </button>
-    {#if showModal}
-	  <AddReviewModal on:close="{() => showModal = false}">
-    </AddReviewModal>
-    {/if}
+    
 
   {:else}
   <div >
@@ -64,6 +66,11 @@
   {/if}
 
 <style>
+
+  .nav{
+    margin-top:0;
+  }
+
   .logincontainer{
     display:flex;
     flex-direction: column;
@@ -81,7 +88,11 @@
     width:16rem;
   }
   .loginbtn{
-    background-color: blueviolet;
+    background-color: #646cff;
+  }
+
+  .add-review{
+    background-color: #646cff;
   }
 
   .loginbtn:hover{

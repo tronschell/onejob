@@ -1,11 +1,8 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { currentUser, pb } from "./pocketbase";
-  import Navbar from "./Navbar.svelte";
   import AddReviewModal from "./AddReviewModal.svelte";
   import EditReviewModal from "./EditReviewModal.svelte";
-  import { loop_guard } from "svelte/internal";
-  import { Record } from "pocketbase";
 
   export let reviews = [];
   export let resultList;
@@ -13,7 +10,6 @@
   let showModal = false;
   let showEditModal = false;
   export let reviewData;
-
 
   export let sortsetting = "-created";
 
@@ -50,10 +46,10 @@ export async function GetNew(sortsetting){
 <div class="main-container">
   <div class="filter-list">
     <h2 style="margin:0 0;">Sort By</h2>
-    <button class="filter-button" on:click={() => GetNew("-created")}>Created By</button>
-    <button class="filter-button" on:click={() => GetNew("-overall_rating")}>Overall Rating</button>
-    <button class="filter-button"on:click={() => GetNew("-work_location")}>Work Location</button>
-    <button class="filter-button"on:click={() => GetNew("-pay")}>Pay</button>
+    <div class="filter-button" on:click={() => GetNew("-created")}>Created By</div>
+    <div class="filter-button" on:click={() => GetNew("-overall_rating")}>Overall Rating</div>
+    <div class="filter-button"on:click={() => GetNew("-work_location")}>Work Location</div>
+    <div class="filter-button"on:click={() => GetNew("-pay")}>Pay</div>
     {sortsetting}
   </div>
 
@@ -157,7 +153,7 @@ export async function GetNew(sortsetting){
       {#if showEditModal}
         <EditReviewModal
           on:close={() => (showEditModal = false)}
-          review={reviewData} sortsetting={sortsetting}
+          review={reviewData}
         />
       {/if}
     </div>
@@ -178,15 +174,30 @@ export async function GetNew(sortsetting){
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(35, 35, 35);
     height: fit-content;
     padding:2rem;
     border-radius: 0.25rem;
   }
 
   .filter-button {
-    width: 200px;
+    width: 120px;
+    background-color: rgb(58, 58, 58);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+    transition: 0.25s;
   }
+
+  .filter-button:hover {
+    width: 120px;
+    background-color: rgb(85, 85, 85);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+    
+  }
+
 
   .reviews {
     display: flex;
@@ -308,6 +319,13 @@ export async function GetNew(sortsetting){
   }
 
   .card-tags p {
+    background-color: rgb(58, 58, 58);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+  }
+
+  .filter-button{
     background-color: rgb(58, 58, 58);
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
