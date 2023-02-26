@@ -3,7 +3,6 @@
   import { currentUser, pb } from "./pocketbase";
   import { onMount, onDestroy } from "svelte";
   import { Collection, Record } from "pocketbase";
-  import GetNew from "./grid.svelte"
 
   const dispatch = createEventDispatcher();
   const close = () => dispatch("close");

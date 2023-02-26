@@ -87,8 +87,8 @@ export async function GetNew(sortsetting){
               {/if}
             </div>
             <div class="card-tags">
-              <p>{review.work_location}</p>
-              <p>{review.position_type}</p>
+              <p class="tag">{review.work_location}</p>
+              <p class="tag">{review.position_type}</p>
             </div>
             <div class="card-bottom">
               <div class="bottom-items">
@@ -132,9 +132,9 @@ export async function GetNew(sortsetting){
               {/if}
             </div>
             <div class="card-tags">
-              <p>{review.work_location}</p>
-              <p>{review.position_type}</p>
-              <p style="background-color:#646cff; box-shadow:0 0 10px 1px #646cff;">Your review!</p>
+              <p class="tag">{review.work_location}</p>
+              <p class="tag">{review.position_type}</p>
+              <p class="tag" style="width:100px; background-color:#646cff; box-shadow:0 0 10px 1px #646cff;">Your review!</p>
             </div>
             
             
@@ -289,6 +289,8 @@ export async function GetNew(sortsetting){
     gap: 1rem;
   }
 
+  
+
   .card-title {
     display: flex;
     flex-direction: column;
@@ -339,6 +341,11 @@ export async function GetNew(sortsetting){
     flex-direction: row;
     gap: 1rem;
     align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .tag{
+    width:80px;
   }
 
   .card-tags p {
@@ -415,6 +422,15 @@ export async function GetNew(sortsetting){
     width: 280px;
   }
 
+  .card-tags {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    width:280px;
+    overflow-wrap: normal;
+  }
+
   .card-owned {
     display: flex;
     flex-direction: column;
@@ -445,6 +461,7 @@ export async function GetNew(sortsetting){
     overscroll-behavior-x: contain;
     flex-flow: row;
     max-width: 280px;
+    justify-content: flex-start;
     gap: 1rem;
     background-color: rgb(35, 35, 35);
     border-width: 1px;
@@ -453,14 +470,14 @@ export async function GetNew(sortsetting){
   }
 
   .filter-button {
-    min-width: 120px;
+    min-width: 140px;
     background-color: rgb(58, 58, 58);
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
     margin: 0.25rem;
   }
   .filter-button.active {
-    min-width: 120px;
+    min-width: 140px;
     background-color: rgb(85, 85, 85);
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
