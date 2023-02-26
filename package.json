@@ -7,11 +7,9 @@
     "start": "npx http-server ./dist",
     "dev": "vite",
     "build": "vite build",
-    "host": "vite --host",
+    "host": "vite",
     "preview": "vite preview",
     "prepare": "npm run smui-theme-light && npm run smui-theme-dark",
-    "smui-theme-light": "smui-theme compile ./smui.css -i src/theme",
-    "smui-theme-dark": "smui-theme compile ./smui-dark.css -i src/theme/dark"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.0",
