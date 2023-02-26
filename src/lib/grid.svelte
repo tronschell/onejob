@@ -134,7 +134,7 @@ export async function GetNew(sortsetting){
             <div class="card-tags">
               <p class="tag">{review.work_location}</p>
               <p class="tag">{review.position_type}</p>
-              <p class="tag" style="width:100px; background-color:#646cff; box-shadow:0 0 10px 1px #646cff;">Your review!</p>
+              <p class="yourstag">Your review!</p>
             </div>
             
             
@@ -345,11 +345,17 @@ export async function GetNew(sortsetting){
   }
 
   .tag{
+    background-color: rgb(58, 58, 58);
     width:80px;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
   }
 
-  .card-tags p {
-    background-color: rgb(58, 58, 58);
+  .yourstag{
+    width:100px;
+    background-color:#646cff;
+    box-shadow:0 0 10px 1px #646cff;
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
     margin: 0.25rem;
