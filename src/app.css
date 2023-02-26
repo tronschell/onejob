@@ -15,6 +15,8 @@
   -webkit-text-size-adjust: 100%;
 }
 
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -30,6 +32,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #242424;
+  opacity: 1;
+  background-image:  radial-gradient(#646cff 0.8500000000000001px, transparent 0.8500000000000001px), radial-gradient(#646cff 0.8500000000000001px, #242424 0.8500000000000001px);
+  background-size: 34px 34px;
+  background-position: 0 0,17px 17px;
+  
 }
 
 h1 {

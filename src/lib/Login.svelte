@@ -46,18 +46,21 @@
   <div >
     <form class="logincontainer" on:submit|preventDefault>
       <input
+      class="userpass"
         placeholder="Username"
         type="text"
         bind:value={username}
       />
   
       <input 
+        class="userpass"
         placeholder="Password" 
         type="password" 
         bind:value={password} 
       />
-      <button on:click={signUp}>Sign Up</button>
       <button class="loginbtn"on:click={login}>Login</button>
+      <button on:click={signUp}>Sign Up</button>
+      
   
       
 
@@ -75,6 +78,10 @@
     .nav{
       display: flex;
       flex-direction: column;
+      font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
     }
   }
 
@@ -89,10 +96,16 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+    background-color: rgba(35, 35, 35, 0.685);
+    
   }
-  input{
+  .userpass{
     padding:0.75rem;
     width:16rem;
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
   }
   .loginbtn{
     background-color: #646cff;

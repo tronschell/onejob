@@ -45,10 +45,10 @@ export async function GetNew(sortsetting){
 
 <div class="main-container">
   <div class="filter-list">
-    <div class="filter-button" on:click={() => GetNew("-created")}>Created By</div>
-    <div class="filter-button" on:click={() => GetNew("-overall_rating")}>Overall Rating</div>
-    <div class="filter-button"on:click={() => GetNew("-work_location")}>Work Location</div>
-    <div class="filter-button"on:click={() => GetNew("-pay")}>Pay</div>
+    <button class="filter-button" on:click={() => GetNew("-created")}>Created By</button>
+    <button class="filter-button" on:click={() => GetNew("-overall_rating")}>Overall Rating</button>
+    <button class="filter-button"on:click={() => GetNew("-work_location")}>Work Location</button>
+    <button class="filter-button"on:click={() => GetNew("-pay")}>Pay</button>
   </div>
 
   <div class="reviews-container">
@@ -134,7 +134,10 @@ export async function GetNew(sortsetting){
             <div class="card-tags">
               <p>{review.work_location}</p>
               <p>{review.position_type}</p>
+              <p style="background-color:#646cff; box-shadow:0 0 10px 1px #646cff;">Your review!</p>
             </div>
+            
+            
             <div class="card-bottom">
               <div class="bottom-items">
                 <h3>Pay</h3>
@@ -167,21 +170,27 @@ export async function GetNew(sortsetting){
 
   .main-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap:1rem;
   }
 
   .filter-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
     background-color: rgb(35, 35, 35);
     height: fit-content;
-    padding:2rem;
+    padding:1rem 2rem;
     border-radius: 0.25rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color:rgb(70,70,70);
   }
 
   .filter-button {
-    width: 120px;
+    width: 140px;
     background-color: rgb(58, 58, 58);
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
@@ -190,19 +199,33 @@ export async function GetNew(sortsetting){
   }
 
   .filter-button:hover {
-    width: 120px;
+    width: 140px;
+    border-width: 1px;
     background-color: rgb(85, 85, 85);
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
+    border-color:#646cff;
     margin: 0.25rem;
-    
+    border-style: solid;
+  }
+
+  .filter-button.active {
+    width: 140px;
+    border-width: 1px;
+    background-color: rgb(85, 85, 85);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    border-color:#646cff;
+    margin: 0.25rem;
+    border-style: solid;
+
   }
 
 
   .reviews {
     display: flex;
     flex-direction: row;
-    max-width: 1000px;
+    max-width: 950px;
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
@@ -237,7 +260,7 @@ export async function GetNew(sortsetting){
     border-radius: 0.25rem;
     border-style: solid;
     border-width: 1px;
-    border-color: #646cff;
+    border-color:rgb(70, 70, 70);
     transition: 0.3s;
     width: 400px;
   }
@@ -366,6 +389,9 @@ export async function GetNew(sortsetting){
     background-color: rgb(35, 35, 35);
     height: fit-content;
     padding:2rem;
+    border-style: solid;
+    border-width: 0.25rem;
+    border-color:rgb(70,70,70);
     border-radius: 0.25rem;
   }
   .reviews {
@@ -421,6 +447,7 @@ export async function GetNew(sortsetting){
     max-width: 280px;
     gap: 1rem;
     background-color: rgb(35, 35, 35);
+    border-width: 1px;
     border-radius: 0.25rem;
     padding: 1rem 2rem;
   }
@@ -432,6 +459,15 @@ export async function GetNew(sortsetting){
     border-radius: 0.25rem;
     margin: 0.25rem;
   }
+  .filter-button.active {
+    min-width: 120px;
+    background-color: rgb(85, 85, 85);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+  }
+
+
 
 }
 </style>

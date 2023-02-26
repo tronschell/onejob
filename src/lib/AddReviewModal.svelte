@@ -87,10 +87,11 @@
 
 <div class="modal-background">
   <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-    <form on:submit|preventDefault={sendreview}>
-      <input type="text" placeholder="Company Name" bind:value={companyname} />
-      <input type="text" placeholder="Role Name" bind:value={rolename} />
-      <input type="text" placeholder="Pay" bind:value={pay} />
+    <h2>Add review</h2>
+    <form class="addreviewform"on:submit|preventDefault={sendreview}>
+      <input class="textinput" type="text" placeholder="Company Name" bind:value={companyname} />
+      <input class="textinput" placeholder="Role Name" bind:value={rolename} />
+      <input class="payinput"type="text" placeholder="Pay" bind:value={pay} />
       <select name="Pay Frequency" bind:value={payrate}>
         <option value="Hourly">Hourly</option>
         <option value="Biweekly">Biweekly</option>
@@ -162,7 +163,23 @@
     transform: translate(-50%, -50%);
     padding: 1em;
     border-radius: 0.25em;
-    background: rgb(78, 78, 78);
+    background: rgb(35, 35, 35);
+    border-style: solid;
+    border-width: 1px;
+    border-color:rgb(70, 70, 70);
+  }
+
+  .addreviewform{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:1rem;
+
+    width: 90%;
+  }
+
+  .textinput{
+    padding:1rem;
   }
 
   button {
