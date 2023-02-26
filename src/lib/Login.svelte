@@ -71,6 +71,13 @@
     margin-top:0;
   }
 
+  @media only screen and (max-width: 414px){
+    .nav{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
   .logincontainer{
     display:flex;
     flex-direction: column;

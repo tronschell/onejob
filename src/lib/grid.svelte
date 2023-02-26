@@ -45,12 +45,10 @@ export async function GetNew(sortsetting){
 
 <div class="main-container">
   <div class="filter-list">
-    <h2 style="margin:0 0;">Sort By</h2>
     <div class="filter-button" on:click={() => GetNew("-created")}>Created By</div>
     <div class="filter-button" on:click={() => GetNew("-overall_rating")}>Overall Rating</div>
     <div class="filter-button"on:click={() => GetNew("-work_location")}>Work Location</div>
     <div class="filter-button"on:click={() => GetNew("-pay")}>Pay</div>
-    {sortsetting}
   </div>
 
   <div class="reviews-container">
@@ -165,6 +163,8 @@ export async function GetNew(sortsetting){
 </div>
 
 <style>
+
+
   .main-container {
     display: flex;
     flex-direction: row;
@@ -237,7 +237,7 @@ export async function GetNew(sortsetting){
     border-radius: 0.25rem;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(235, 255, 108);
+    border-color: #646cff;
     transition: 0.3s;
     width: 400px;
   }
@@ -351,4 +351,87 @@ export async function GetNew(sortsetting){
   .bottom-items p {
     margin-bottom: 0;
   }
+
+
+@media only screen and (max-width: 414px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+  }
+  .filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgb(35, 35, 35);
+    height: fit-content;
+    padding:2rem;
+    border-radius: 0.25rem;
+  }
+  .reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgb(35, 35, 35);
+    padding: 2rem;
+    border-radius: 0.25rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(70, 70, 70);
+    transition: 0.3s;
+    width: 280px;
+  }
+
+  .card-owned {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: rgb(35, 35, 35);
+    padding: 2rem;
+    border-radius: 0.25rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #646cff;
+    transition: 0.3s;
+    width: 280px;
+  }
+
+  .card-title h2 {
+    margin: auto 0;
+    width:7rem;
+    display: flex;
+    text-overflow: ellipsis;
+    align-items: flex-start;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .filter-list {
+    display: flex;
+    overflow-y:auto;
+    overscroll-behavior-x: contain;
+    flex-flow: row;
+    max-width: 280px;
+    gap: 1rem;
+    background-color: rgb(35, 35, 35);
+    border-radius: 0.25rem;
+    padding: 1rem 2rem;
+  }
+
+  .filter-button {
+    min-width: 120px;
+    background-color: rgb(58, 58, 58);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+  }
+
+}
 </style>
