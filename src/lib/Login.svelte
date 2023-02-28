@@ -2,7 +2,7 @@
   import Addreview from './Addreview.svelte';
   import { currentUser, pb } from './pocketbase';
   import AddReviewModal from "./AddReviewModal.svelte"
-  
+
     let username;
     let password;
     let showModal = false;
@@ -29,17 +29,16 @@
   </script>
   
   {#if $currentUser}
-    <p class="nav">
-      Signed in as {$currentUser.username} 
+    <div class="nav">
+      <script src="https://kit.fontawesome.com/d451df271f.js" crossorigin="anonymous"></script>
+      <p> <i class="fa-solid fa-user"></i>{$currentUser.username} </p>
       <button on:click={signOut}>Sign Out</button>
-      <button class="add-review"on:click="{() => showModal = true}">
-        Add Review
-      </button>
+      <button class="add-review"on:click="{() => showModal = true}"><i class="fa-solid fa-plus"></i>Add Review</button>
       {#if showModal}
       <AddReviewModal on:close="{() => showModal = false}">
       </AddReviewModal>
       {/if}
-    </p>
+    </div>
     
 
   {:else}
@@ -77,7 +76,7 @@
   @media only screen and (max-width: 414px){
     .nav{
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
       font-size: 16px;
       line-height: 24px;
@@ -109,14 +108,39 @@
   }
   .loginbtn{
     background-color: #646cff;
+    
   }
 
   .add-review{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
     background-color: #646cff;
+    width:11rem;
+    justify-content: center;
+    gap:1rem;
   }
+
 
   .loginbtn:hover{
     border-style: solid;
     border-color: aliceblue;
+  }
+
+  .nav{
+      display: flex;
+      flex-direction: row;
+      font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      gap:1rem;
+      background-color: black;
+      padding:1rem 2rem;
+      width:93%;
+      align-items: center;
+      justify-content: flex-end;
+      border-radius: 0.25rem;
+
   }
 </style>
