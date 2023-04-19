@@ -87,57 +87,88 @@
 
 <div class="modal-background">
   <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-    <h2>Add review</h2>
+    <div class="top-button">
+      <button style="align-items:flex-end"autofocus on:click={close}>Close</button>
+    </div>
+  <h2 style="margin-top:0;">Add review</h2>
+  <hr />
+    
     <form class="addreviewform"on:submit|preventDefault={sendreview}>
-      <input class="textinput" type="text" placeholder="Company Name" bind:value={companyname} />
-      <input class="textinput" placeholder="Role Name" bind:value={rolename} />
-      <input class="payinput"type="text" placeholder="Pay" bind:value={pay} />
-      <select name="Pay Frequency" bind:value={payrate}>
-        <option value="Hourly">Hourly</option>
-        <option value="Biweekly">Biweekly</option>
-        <option value="Monthly">Monthly</option>
-        <option value="Annually">Annually</option>
-        <option value="Total">Total</option>
-      </select>
-      <select name="Work Location" bind:value={worklocation}>
-        <option value="In Person">In Person</option>
-        <option value="Remote">Remote</option>
-        <option value="Hybrid">Hybrid</option>
-      </select>
-      <select name="Position Type" bind:value={positiontype}>
-        <option value="Full Time">Full Time</option>
-        <option value="Internship">Internship</option>
-        <option value="Co-op">Co-op</option>
-        <option value="Contractor">Contractor</option>
-      </select>
-      <input type="text" placeholder="College Major" bind:value={schoolmajor} />
-      <input type="text" placeholder="Description" bind:value={description} />
-      <select name="Number of Interviews" bind:value={numinterviews}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="4">5</option>
-      </select>
-      <select name="Work-Life Balance Rating" bind:value={wlbrating}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="4">5</option>
-      </select>
-      <select name="Overall Rating" bind:value={overallrating}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="4">5</option>
-      </select>
-      <button on:click={sendreview} type="submit">Submit</button>
+      <h3 class="titles">Role Info</h3>
+      <div class="company-section">
+        <input class="textinput" type="text" placeholder="Company Name" bind:value={companyname} />
+        <input class="textinput" placeholder="Role Name" bind:value={rolename} />
+      </div>
+      <h3 class="titles">Pay Info</h3>
+      <div class="pay-section">
+        <input class="textinput" type="text" placeholder="Pay" bind:value={pay} />
+        <select class="selectinput" name="Pay Frequency" bind:value={payrate}>
+          <option value="Hourly">Hourly</option>
+          <option value="Biweekly">Biweekly</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Annually">Annually</option>
+          <option value="Total">Total</option>
+        </select>
+      </div>
+      <h3 class="titles">Work Details Info</h3>
+      <div class="work-section">
+        <div class="work-location-details">
+          <select class="selectinput" name="Work Location" bind:value={worklocation}>
+            <option value="In Person">In Person</option>
+            <option value="Remote">Remote</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+          <select class="selectinput" name="Position Type" bind:value={positiontype}>
+            <option value="Full Time">Full Time</option>
+            <option value="Internship">Internship</option>
+            <option value="Co-op">Co-op</option>
+            <option value="Contractor">Contractor</option>
+          </select>
+        </div>
+        <div class="reviews">
+          <div class="reviews-detail">
+          <p>Number of Interviews</p>
+          <select class="selectinput" name="Number of Interviews" bind:value={numinterviews}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="4">5</option>
+          </select>
+        </div>
+          <div class="reviews-detail">
+            <p>Work Life Balance Rating</p>
+          <select class="selectinput" name="Work-Life Balance Rating" bind:value={wlbrating}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="4">5</option>
+          </select>
+          </div>
+          <div class="reviews-detail">
+            <p>Overall Rating</p>
+          <select class="selectinput" name="Overall Rating" bind:value={overallrating}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="4">5</option>
+          </select>
+          </div>
+        </div>
+      </div>
+      <h3 class="titles">Miscellaneous Section</h3>
+      <div class="misc-section">
+        <input class="textinput" type="text" placeholder="College Major" bind:value={schoolmajor} />
+        <input class="textinput" type="text" placeholder="Description" bind:value={description} />
+      </div>
+      <div>
+        <button style="background-color:#646cff"on:click={sendreview} type="submit">Submit</button>
+      </div>
     </form>
-    <hr />
     <!-- svelte-ignore a11y-autofocus -->
-    <button autofocus on:click={close}>close modal</button>
+    
   </div>
 </div>
 
@@ -171,16 +202,95 @@
 
   .addreviewform{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     gap:1rem;
-
+    justify-content: center;
     width: 90%;
+    margin:0 auto;
+    align-items: flex-start;
   }
+
+  .company-section{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+  }
+
+  .pay-section{
+    display: flex;  
+    gap:1rem;
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  .work-section{
+    flex-direction: column;
+    display: flex;  
+    gap:1rem;
+    align-items: center;
+
+  }
+
+  .work-location-details{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+  }
+
+  .reviews{
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+    justify-content: flex-end;
+  }
+
+  .reviews-detail{
+    gap:1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .misc-section{
+    flex-direction: row;
+    display: flex;  
+    gap:1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .titles{
+    margin:0.5rem; 
+  }
+
 
   .textinput{
     padding:1rem;
   }
+
+  .selectinput{
+    padding:0.5rem;
+  }
+
+  .top-items{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .top-text{
+    display: flex;
+    align-items: center;
+  }
+
+  .top-button{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  
 
   button {
     display: block;

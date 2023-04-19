@@ -118,7 +118,6 @@
     flex-direction: row;
     align-items: center;
     background-color: #646cff;
-    width:11rem;
     justify-content: center;
     gap:1rem;
   }
@@ -150,7 +149,7 @@
   }
 
   .nav-items{
-    padding:0rem 2rem;
+    padding:0rem 5rem;
     display: flex;
     flex-direction: row;
     align-items: center;

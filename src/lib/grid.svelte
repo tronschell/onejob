@@ -2,19 +2,29 @@
   import { onMount, onDestroy } from "svelte";
   import { currentUser, pb } from "./pocketbase";
   import AddReviewModal from "./AddReviewModal.svelte";
+  import DetailsModal from "./DetailsModal.svelte";
   import EditReviewModal from "./EditReviewModal.svelte";
+
+
 
   export let reviews = [];
   export let resultList;
   let seemorenum = 4;
   let showModal = false;
   let showEditModal = false;
+  let showDetailsModal = false;
   export let reviewData;
+
 
   export let sortsetting = "-created";
 
   function editStatus(status, review) {
     showEditModal = status;
+    reviewData = review;
+  }
+
+  function changeDetailsModal(status, review) {
+    showDetailsModal = status;
     reviewData = review;
   }
 
@@ -58,7 +68,7 @@ export async function GetNew(sortsetting){
       {/if}
       {#each reviews.slice(0, seemorenum) as review, i}
         {#if review.created_by != $currentUser.id}
-          <div class="card">
+          <div class="card" on:click={changeDetailsModal(true, review)}>
             <div class="card-top">
               <div class="logoname">
                 <div class="company-logo">
@@ -157,11 +167,16 @@ export async function GetNew(sortsetting){
           review={reviewData}
         />
       {/if}
+      {#if showDetailsModal}
+        <DetailsModal
+          on:close={() => (showDetailsModal = false)}
+          review={reviewData}
+        />
+      {/if}
     </div>
-    <button
-      style="margin-top:1rem;"
-      on:click={() => (seemorenum = seemorenum + 4)}>See More</button
-    >
+      <button
+        on:click={() => (seemorenum = seemorenum + 4)}>See More</button
+      >
   </div>
 </div>
 
@@ -387,6 +402,7 @@ export async function GetNew(sortsetting){
   .bottom-items p {
     margin-bottom: 0;
   }
+
 
 
 @media only screen and (max-width: 414px) {
