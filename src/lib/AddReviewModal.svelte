@@ -1,6 +1,11 @@
 <script>
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
   import { currentUser, pb } from "./pocketbase";
+  import { toast } from "svelte-toastify";
+
+
+
+
   const dispatch = createEventDispatcher();
   const close = () => dispatch("close");
   
@@ -73,12 +78,13 @@
 
     try {
       const createdreview = await pb.collection("reviews").create(data);
-	  console.log($currentUser.id)
+    toast.success("Successfully posted new review.");
 		close()
+    await new Promise(r => setTimeout(r, 2000));
+    window.location.reload()
 		
     } catch (e) {
-      console.log(e);
-	  console.log($currentUser.id)
+      console.error(e);
     }
   }
 </script>

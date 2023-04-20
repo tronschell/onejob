@@ -2,12 +2,23 @@
   import Addreview from './Addreview.svelte';
   import { currentUser, pb } from './pocketbase';
   import AddReviewModal from "./AddReviewModal.svelte"
+  import { toast } from "svelte-toastify";
+
+
 
     let username;
     let password;
     let showModal = false;
     async function login() {
-      await pb.collection('users').authWithPassword(username, password);
+      try {
+        await pb.collection('users').authWithPassword(username, password);
+        toast.success("Successfully logged in.");
+      }
+      catch(e){
+        console.log(e)
+        toast.error("Failed to log in.");
+      }
+      
     }
     async function signUp() {
       try {
@@ -19,12 +30,15 @@
         };
         const createdUser = await pb.collection('users').create(data);
         await login();
+        toast.success("Successfully signed up & logged in.");
       } catch (err) {
         console.error(err)
+        toast.error("Failed to sign up.");
       }
     }
     function signOut() {
       pb.authStore.clear();
+      toast.success("Successfully logged out.");
     }
   </script>
   
@@ -68,7 +82,6 @@
     </form>
   </div>
   {/if}
-
 <style>
 
   .nav{
@@ -144,12 +157,12 @@
       background-color: rgb(35, 35, 35);
       border-style: solid;
       border-color:rgb(70,70,70);
-      border-width: 0 0 01px;
+      border-width: 0 0 1px;
       padding:1rem 2rem;
       width:100vw;
       align-items: center;
+      background-position: -10px,0,0;
       justify-content: flex-end;
-      border-radius: 0.25rem;
 
   }
 

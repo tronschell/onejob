@@ -16,6 +16,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "pocketbase": "^0.10.1"
+    "pocketbase": "^0.10.1",
+    "svelte-toastify": "^0.0.27"
   }
 }

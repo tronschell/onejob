@@ -28,16 +28,7 @@
     reviewData = review;
   }
 
-export async function GetNew(sortsetting){
-    resultList = await pb
-        .collection("reviews")
-        .getList(1, 50, { sort: sortsetting})
-      reviews = resultList.items;
-}
-
-
-  onMount(async () => {
-    // Get initial reviews
+  export async function refreshData(){
     try {
     resultList = await pb
         .collection("reviews")
@@ -47,6 +38,11 @@ export async function GetNew(sortsetting){
     } catch (e) {
       console.log(e);
     }
+  }
+
+  onMount(async () => {
+    // Get initial reviews
+    refreshData()
 
   });
 

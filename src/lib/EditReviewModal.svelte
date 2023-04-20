@@ -3,6 +3,7 @@
   import { currentUser, pb } from "./pocketbase";
   import { onMount, onDestroy } from "svelte";
   import { Collection, Record } from "pocketbase";
+  import { toast } from "svelte-toastify";
 
   const dispatch = createEventDispatcher();
   const close = () => dispatch("close");
@@ -91,8 +92,12 @@
     });
 	console.log(data)
 	console.log("submitted")
+  toast.success("Successfully edited review.");
+  await new Promise(r => setTimeout(r, 2000));
   
 	close()
+  window.location.reload()
+  
 	}
 	catch(e){
 		console.log(e)
@@ -103,10 +108,14 @@
   async function deleteReview() {
 	try{
 		await pb.collection('reviews').delete(review.id);
+    toast.success("Successfully deleted review.");
+    await new Promise(r => setTimeout(r, 2000));
 		console.log("DELETED RECORD")
+    window.location.reload()
 	}
 	catch(e){
 		console.log(e)
+
 	}
   }
 
