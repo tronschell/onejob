@@ -121,6 +121,9 @@
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
   <form on:submit|preventDefault={updateReview}>
+    <div class="top-button">
+      <button autofocus on:click={close}>Close</button>
+    </div>
     <input
       type="text"
       bind:value={companyname}
@@ -190,13 +193,14 @@
       <option value="4">4</option>
       <option value="4">5</option>
     </select>
-    <button autofocus on:click={updateReview} type="submit">Submit</button>
-    <button autofocus on:click={deleteReview} type="submit">DELETE</button>
-
+    <div class="buttons">
+      <button class="submit" autofocus on:click={updateReview} type="submit">Submit</button>
+      <button class="delete" autofocus on:click={deleteReview} type="submit">Delete</button>
+    </div>
   </form>
   <hr />
   <!-- svelte-ignore a11y-autofocus -->
-  <button autofocus on:click={close}>close modal</button>
+  
 </div>
 
 <style>
@@ -219,11 +223,31 @@
     max-height: calc(100vh - 4em);
     overflow: auto;
     transform: translate(-50%, -50%);
-    padding: 2rem;
+    padding: 1em;
     border-radius: 0.25em;
 	border-style: solid;
 	border-color: rgb(75, 75, 75);
     background: rgb(35, 35, 35);
+  }
+
+  .top-button{
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom:1rem;
+  }
+
+  .submit{
+    background-color: #646cff;
+  }
+
+  .delete{
+    background-color: indianred;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+    margin: 1rem;
   }
 
   button {

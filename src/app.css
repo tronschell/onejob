@@ -27,10 +27,10 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 414px;
   min-height: 100vh;
   background-color: #242424;
   opacity: 1;

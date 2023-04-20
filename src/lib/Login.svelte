@@ -32,13 +32,13 @@
     <div class="nav">
       <div class="nav-items">
         <script src="https://kit.fontawesome.com/d451df271f.js" crossorigin="anonymous"></script>
-        <p> <i class="fa-solid fa-user"></i>{$currentUser.username} </p>
-        <button on:click={signOut}>Sign Out</button>
-        <button class="add-review"on:click="{() => showModal = true}"><i class="fa-solid fa-plus"></i>Add Review</button>
-        {#if showModal}
-        <AddReviewModal on:close="{() => showModal = false}">
-        </AddReviewModal>
-        {/if}
+          <p> <i class="fa-solid fa-user"></i>{$currentUser.username} </p>
+          <button class="sign-out" on:click={signOut}>Sign Out</button>
+          <button class="add-review"on:click="{() => showModal = true}"><i class="fa-solid fa-plus"></i>Add Review</button>
+          {#if showModal}
+          <AddReviewModal on:close="{() => showModal = false}">
+          </AddReviewModal>
+          {/if}
     </div>
     </div>
     
@@ -79,10 +79,15 @@
     .nav{
       display: flex;
       flex-direction: row;
+      justify-content: flex-end;
       font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
       font-size: 16px;
       line-height: 24px;
       font-weight: 400;
+      justify-content: flex-end;
+    }
+    .nav-items{
+      justify-content: flex-end;
     }
   }
 

@@ -229,12 +229,12 @@
     flex-direction: column;
     display: flex;  
     gap:1rem;
-    align-items: center;
+    align-items: flex-start;
 
   }
 
   .work-location-details{
-    display: flex;
+    display: flex;  
     flex-direction: row;
     gap:1rem;
   }
@@ -262,7 +262,8 @@
   }
 
   .titles{
-    margin:0.5rem; 
+    margin-top:0.5rem; 
+    margin-bottom: 0;
   }
 
 
@@ -288,6 +289,30 @@
   .top-button{
     display: flex;
     justify-content: flex-end;
+  }
+
+  @media only screen and (max-width: 414px){
+
+    .textinput{
+      width:60vw;
+    }
+    .company-section{
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .pay-section{
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .misc-section{
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: flex-start;
+    }
   }
 
   
