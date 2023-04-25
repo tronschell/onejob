@@ -47,9 +47,8 @@
         .collection("reviews")
         .getList(1, 50, { sort: query})
       reviews = resultList.items;
-      console.log(reviews)
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 
